@@ -11,16 +11,13 @@ from common import parent_directory, TRAINING_MODES, setup_logger
 
 def train(user_id, mode=0):
     """
-    :param user_id: id of the user to train
-    :param mode:
-    :return: Doesn't return anything
     The function trains a model for the user based on it's previous orders
     """
     # CONFIGURABLE VARIABLES
     precision = .02  # finish the training when the error is less
     batch_size = 100  # number of training iterations between tests
     timeout_minutes = TRAINING_MODES[mode]['duration']  # training time limit in minutes
-    precision_fitting_occurence = 5  # how many times in a row the condition should check before stopping the training
+    precision_fitting_occurrence = 5  # how many times in a row the condition should check before stopping the training
     accuracy_width = .4  # accepted deviation from expected result
     acceptable_accuracy = 80  # acceptable accuracy for a good training
     train_data_ratio = .8  # the rest is the test data ratio
@@ -81,12 +78,12 @@ def train(user_id, mode=0):
 
                 if batch > 300 and (err < precision or accuracy > acceptable_accuracy):
                     if last_precision_fitting == batch - 1:
-                        precision_fitting_occurence -= 1
+                        precision_fitting_occurrence -= 1
                     else:
-                        precision_fitting_occurence = 5
+                        precision_fitting_occurrence = 5
                     last_precision_fitting = batch
 
-                if precision_fitting_occurence == 0:
+                if precision_fitting_occurrence == 0:
                     stop = True
                     reason = TRAINING_MODES['accuracy_reason']
                 if time.time() > timeout:
@@ -112,6 +109,3 @@ def train(user_id, mode=0):
         file_name = f'{parent_directory}/models/user{user_id}.pkl'
         pickle.dump(d, open(file_name, 'wb'), pickle.HIGHEST_PROTOCOL)
 
-
-if __name__ == '__main__':
-    train(12)

@@ -72,7 +72,7 @@ def add_user(user_id):
     """
     1. has enough training data:
         yes - go to step 2
-        no  - return, notify about inability to train
+        no  - short training, notify about big chance of inaccuracy
     2. has a training file:
         yes - go to step 3
         no  - add to training queue with priority 1
@@ -120,8 +120,3 @@ def check_users():
 
     for user in users_list:
         add_user(user)
-
-
-# if __name__ == '__main__':
-#     # check_users()
-#     add_user(285)

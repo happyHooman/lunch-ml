@@ -6,7 +6,7 @@ parent_directory = path.abspath(path.dirname(__file__))
 
 
 def setup_logger(name, log_file, level=logging.INFO):
-    """Function setup as many loggers as you want"""
+    """Setup as many loggers as you want"""
     log_file_path = f'{parent_directory}/logs/{log_file}'
     handler = logging.FileHandler(log_file_path)
     handler.setFormatter(formatter)

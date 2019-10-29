@@ -51,10 +51,3 @@ def get_available_menus():
 
     return orders
 
-
-if __name__ == '__main__':
-    import pandas as pd
-
-    user = 55
-    training_data = get_training_data(user)
-    pd.DataFrame(training_data).to_excel('test.xlsx', sheet_name='sheet1')

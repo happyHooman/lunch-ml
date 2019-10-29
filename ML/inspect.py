@@ -13,5 +13,5 @@ def inspect_model(user):
 
 
 if __name__ == '__main__':
-    user_id = sys.argv[1] or 268
+    user_id = int(sys.argv[1])
     inspect_model(user_id)
